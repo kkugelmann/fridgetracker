@@ -1,0 +1,6 @@
+[influxDB]
+Host=
+Port=
+Username=
+Password=
+Database=fridgetracker
