@@ -18,15 +18,19 @@ button = Button(2)
 while True:
     button.wait_for_release()
     starttime = time.time()
-    print("Button was pressed")
+    starttimestamp = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
+    print("Door was opened")
 
     button.wait_for_press()
     endtime = time.time()
     time_taken = endtime - starttime
-    print("Button was pressed for"+str(time_taken))
+    print("Door was closed - was open for "+str(time_taken))
     json_data = [{
         "measurement": "doorOpenEvents",
-        "time": str(datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')),
+        "tags": {
+            "fridge": "Korbi's Kühlschrank"
+        },
+        "time": starttimestamp,
         "duration": int(time_taken)
     }]
     print(json_data)
