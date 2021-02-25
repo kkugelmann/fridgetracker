@@ -16,7 +16,7 @@ client.switch_database(config['influxDB']['Database'])
 button = Button(2)
 
 while True:
-    button.wait_for_release()
+    button.wait_for_press()
     starttime = time.time()
     starttimestamp = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
     print("Door was opened")
@@ -32,7 +32,7 @@ while True:
         
     }])
 
-    button.wait_for_press()
+    button.wait_for_release()
     endtime = time.time()
     time_taken = endtime - starttime
     print("Door was closed - was open for "+str(time_taken))
