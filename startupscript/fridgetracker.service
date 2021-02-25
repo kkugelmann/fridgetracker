@@ -1,0 +1,8 @@
+[Unit]
+Description=Fridgetracker startup script
+
+[Service]
+ExecStart=python3 /home/pi/fridgetracker.py
+
+[Install]
+WantedBy=multi-user.target
