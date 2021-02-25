@@ -20,25 +20,43 @@ while True:
     starttime = time.time()
     starttimestamp = datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ')
     print("Door was opened")
+    client.write_points([{
+        "measurement": "doorStatus",
+        "tags": {
+            "fridge": "Korbis Fridge"
+        },
+        "time": datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+        "fields": {
+            "open": 1
+        }
+        
+    }])
 
     button.wait_for_press()
     endtime = time.time()
     time_taken = endtime - starttime
     print("Door was closed - was open for "+str(time_taken))
-    json_data = [{
-        "measurement": "doorOpenEvents",
+    client.write_points([{
+        "measurement": "doorStatus",
         "tags": {
-            "fridge": "Korbi's Kühlschrank"
+            "fridge": "Korbis Fridge"
+        },
+        "time": datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%SZ'),
+        "fields": {
+            "open": 0
+        }
+        
+    }])
+    json_data = [{
+        "measurement": "doorOpenDurations",
+        "tags": {
+            "fridge": "Korbis Fridge"
         },
         "time": starttimestamp,
-        "duration": int(time_taken)
+        "fields": {
+            "duration": int(time_taken)
+        }
+        
     }]
     print(json_data)
     client.write_points(json_data)
-
-
-
-
-
-
-
