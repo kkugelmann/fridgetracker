@@ -1,11 +1,15 @@
+import os 
 import time
 import configparser
 from datetime import datetime
 from gpiozero import Button
 from influxdb import InfluxDBClient
 
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+
 config = configparser.ConfigParser()
-config.read('config.ini')
+config.read(dir_path+'config.ini')
 
 client = InfluxDBClient(
     host=config['influxDB']['Host'], 
