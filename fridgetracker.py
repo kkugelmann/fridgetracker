@@ -7,9 +7,8 @@ from influxdb import InfluxDBClient
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-
 config = configparser.ConfigParser()
-config.read(dir_path+'config.ini')
+config.read(dir_path+'/config.ini')
 
 client = InfluxDBClient(
     host=config['influxDB']['Host'], 
