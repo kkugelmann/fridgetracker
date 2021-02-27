@@ -15,6 +15,8 @@ client.switch_database(config['influxDB']['Database'])
 
 button = Button(2)
 
+print('Service Started, waiting for interactions')
+
 while True:
     button.wait_for_press()
     starttime = time.time()
@@ -58,5 +60,4 @@ while True:
         }
         
     }]
-    print(json_data)
     client.write_points(json_data)

@@ -2,7 +2,8 @@
 Description=Fridgetracker startup script
 
 [Service]
-ExecStart=python3 /home/pi/fridgetracker.py
+WorkingDirectory=/opt/fridgetracker
+ExecStart=/usr/bin/python3 /opt/fridgetracker/fridgetracker.py
 
 [Install]
 WantedBy=multi-user.target
